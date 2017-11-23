@@ -1,0 +1,10 @@
+{
+    "springBootAngJsTemplateApp": {
+        "StatusEnum" : {
+            "null": "",
+            "ACTIVE": "ACTIVE",
+            "INACTIVE": "INACTIVE",
+            "PENDING": "PENDING"
+        }
+    }
+}
