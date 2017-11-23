@@ -1,0 +1,41 @@
+entity Restaurant {
+	id Long,
+	name String,
+    status StatusEnum
+}
+
+entity Customer {
+	id Long,
+	name String,
+    phone String,
+    address String,
+    buyDate ZonedDateTime,
+    avatar ImageBlob,
+    male Boolean
+}
+
+entity Picture {
+	id Long,
+    img ImageBlob
+}
+
+enum StatusEnum {
+	ACTIVE,INACTIVE,PENDING
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Restaurant{res_cus} to Customer,
+    Restaurant{res_pic} to Picture
+}
+
+
+
+// Set pagination options
+paginate Restaurant with infinite-scroll
+paginate Customer, Picture with pagination
+
+dto * with mapstruct
+
+// Set an angular suffix
+// angularSuffix * with felix
