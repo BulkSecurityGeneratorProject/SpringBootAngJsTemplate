@@ -1,0 +1,19 @@
+version: '2'
+services:
+    springbootangjstemplate-app:
+        image: springbootangjstemplate
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://springbootangjstemplate-mysql:3306/springbootangjstemplate?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=springbootangjstemplate-elasticsearch:9300
+        ports:
+            - 8080:8080
+    springbootangjstemplate-mysql:
+        extends:
+            file: mysql.yml
+            service: springbootangjstemplate-mysql
+    springbootangjstemplate-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: springbootangjstemplate-elasticsearch

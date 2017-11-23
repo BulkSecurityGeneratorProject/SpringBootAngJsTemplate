@@ -1,0 +1,32 @@
+
+<div>
+    <h2><span data-translate="springBootAngJsTemplateApp.picture.detail.title">Picture</span> {{vm.picture.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="springBootAngJsTemplateApp.picture.img">Img</span></dt>
+        <dd>
+            <div ng-if="vm.picture.img">
+                <a ng-click="vm.openFile(vm.picture.imgContentType, vm.picture.img)">
+                    <img data-ng-src="{{'data:' + vm.picture.imgContentType + ';base64,' + vm.picture.img}}" style="max-width: 100%;" alt="picture image"/>
+                </a>
+                {{vm.picture.imgContentType}}, {{vm.byteSize(vm.picture.img)}}
+            </div>
+        </dd>
+        <dt><span data-translate="springBootAngJsTemplateApp.picture.restaurant">Restaurant</span></dt>
+        <dd>
+            <a ui-sref="restaurant-detail({id:vm.picture.restaurantId})">{{vm.picture.restaurantId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="picture-detail.edit({id:vm.picture.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

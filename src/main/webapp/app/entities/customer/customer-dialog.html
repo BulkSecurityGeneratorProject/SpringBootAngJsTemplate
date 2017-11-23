@@ -1,0 +1,87 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCustomerLabel" data-translate="springBootAngJsTemplateApp.customer.home.createOrEditLabel">Create or edit a Customer</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.customer.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.customer.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="springBootAngJsTemplateApp.customer.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.customer.name"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="springBootAngJsTemplateApp.customer.phone" for="field_phone">Phone</label>
+            <input type="text" class="form-control" name="phone" id="field_phone"
+                    ng-model="vm.customer.phone"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="springBootAngJsTemplateApp.customer.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                    ng-model="vm.customer.address"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="springBootAngJsTemplateApp.customer.buyDate" for="field_buyDate">Buy Date</label>
+                <div class="input-group">
+                    <input id="field_buyDate" type="text" class="form-control" name="buyDate" datetime-picker="{{dateformat}}" ng-model="vm.customer.buyDate" is-open="vm.datePickerOpenStatus.buyDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('buyDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAvatar($file, vm.customer)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="springBootAngJsTemplateApp.customer.avatar" for="field_avatar">Avatar</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.customer.avatarContentType + ';base64,' + vm.customer.avatar}}" style="max-height: 100px;" ng-if="vm.customer.avatar" alt="customer image"/>
+                <div ng-if="vm.customer.avatar" class="help-block clearfix">
+                    <span class="pull-left">{{vm.customer.avatarContentType}}, {{vm.byteSize(vm.customer.avatar)}}</span>
+                    <button type="button" ng-click="vm.customer.avatar=null;vm.customer.avatarContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAvatar($file, vm.customer)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="avatar" id="field_avatar"
+                    ng-model="vm.customer.avatar"
+                    />
+            <input type="hidden" class="form-control" name="avatarContentType" id="field_avatarContentType"
+                    ng-model="vm.customer.avatarContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="springBootAngJsTemplateApp.customer.male" for="field_male">Male</label>
+                <input type="checkbox" name="male" id="field_male"
+                          ng-model="vm.customer.male"/>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="springBootAngJsTemplateApp.customer.restaurant" for="field_restaurant">Restaurant</label>
+            <select class="form-control" id="field_restaurant" name="restaurant" ng-model="vm.customer.restaurantId" ng-options="restaurant.id as restaurant.id for restaurant in vm.restaurants"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

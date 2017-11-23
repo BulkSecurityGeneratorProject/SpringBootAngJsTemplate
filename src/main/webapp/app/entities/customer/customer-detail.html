@@ -1,0 +1,52 @@
+
+<div>
+    <h2><span data-translate="springBootAngJsTemplateApp.customer.detail.title">Customer</span> {{vm.customer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="springBootAngJsTemplateApp.customer.name">Name</span></dt>
+        <dd>
+            <span>{{vm.customer.name}}</span>
+        </dd>
+        <dt><span data-translate="springBootAngJsTemplateApp.customer.phone">Phone</span></dt>
+        <dd>
+            <span>{{vm.customer.phone}}</span>
+        </dd>
+        <dt><span data-translate="springBootAngJsTemplateApp.customer.address">Address</span></dt>
+        <dd>
+            <span>{{vm.customer.address}}</span>
+        </dd>
+        <dt><span data-translate="springBootAngJsTemplateApp.customer.buyDate">Buy Date</span></dt>
+        <dd>
+            <span>{{vm.customer.buyDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="springBootAngJsTemplateApp.customer.avatar">Avatar</span></dt>
+        <dd>
+            <div ng-if="vm.customer.avatar">
+                <a ng-click="vm.openFile(vm.customer.avatarContentType, vm.customer.avatar)">
+                    <img data-ng-src="{{'data:' + vm.customer.avatarContentType + ';base64,' + vm.customer.avatar}}" style="max-width: 100%;" alt="customer image"/>
+                </a>
+                {{vm.customer.avatarContentType}}, {{vm.byteSize(vm.customer.avatar)}}
+            </div>
+        </dd>
+        <dt><span data-translate="springBootAngJsTemplateApp.customer.male">Male</span></dt>
+        <dd>
+            <span>{{vm.customer.male}}</span>
+        </dd>
+        <dt><span data-translate="springBootAngJsTemplateApp.customer.restaurant">Restaurant</span></dt>
+        <dd>
+            <a ui-sref="restaurant-detail({id:vm.customer.restaurantId})">{{vm.customer.restaurantId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="customer-detail.edit({id:vm.customer.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
