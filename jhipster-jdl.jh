@@ -37,5 +37,5 @@ paginate Customer, Picture with pagination
 
 dto * with mapstruct
 
-// Set an angular suffix
+// Set an angular suffix 
 // angularSuffix * with felix
